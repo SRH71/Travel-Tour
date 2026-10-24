@@ -1,0 +1,491 @@
+<div class="container-fluid p-4">
+
+    <!-- HEADER -->
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h1 class="fw-bold mb-1">
+                Edit Tour
+            </h1>
+
+            <p class="text-muted mb-0">
+                Update the tour package information.
+            </p>
+
+        </div>
+
+        <a
+            routerLink="/admin/tours"
+            class="btn btn-outline-secondary">
+
+            <i class="bi bi-arrow-left me-2"></i>
+
+            Back to Tours
+
+        </a>
+
+    </div>
+
+
+    <!-- LOADING -->
+
+    <div
+        *ngIf="loading"
+        class="text-center py-5">
+
+        <div
+            class="spinner-border text-primary"
+            role="status">
+        </div>
+
+        <p class="mt-3 text-muted">
+            Loading tour...
+        </p>
+
+    </div>
+
+
+    <!-- ERROR -->
+
+    <div
+        *ngIf="errorMessage"
+        class="alert alert-danger">
+
+        <i class="bi bi-exclamation-triangle me-2"></i>
+
+        {{ errorMessage }}
+
+    </div>
+
+
+    <!-- FORM -->
+
+    <div
+        *ngIf="!loading"
+        class="card shadow-sm border-0">
+
+        <div class="card-body p-4">
+
+            <form
+                (ngSubmit)="updateTour()"
+                #tourForm="ngForm">
+
+
+                <!-- BASIC INFORMATION -->
+
+                <h4 class="fw-bold mb-3">
+
+                    <i class="bi bi-info-circle me-2"></i>
+
+                    Basic Information
+
+                </h4>
+
+
+                <div class="row">
+
+                    <!-- NAME -->
+
+                    <div class="col-md-8 mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Tour Name *
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="name"
+                            [(ngModel)]="tour.name"
+                            required
+                            placeholder="Example: Everest Base Camp Trek">
+
+                    </div>
+
+
+                    <!-- DESTINATION -->
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Destination
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="destination"
+                            [(ngModel)]="tour.destination"
+                            placeholder="Example: Everest Region, Nepal">
+
+                    </div>
+
+
+                    <!-- DESCRIPTION -->
+
+                    <div class="col-12 mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Description
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            name="description"
+                            [(ngModel)]="tour.description"
+                            rows="4"
+                            placeholder="Describe the tour package..."></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <hr class="my-4">
+
+
+                <!-- TOUR DETAILS -->
+
+                <h4 class="fw-bold mb-3">
+
+                    <i class="bi bi-map me-2"></i>
+
+                    Tour Details
+
+                </h4>
+
+
+                <div class="row">
+
+                    <!-- DURATION -->
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Duration (Days)
+                        </label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            name="durationDays"
+                            [(ngModel)]="tour.durationDays"
+                            min="1">
+
+                    </div>
+
+
+                    <!-- GROUP SIZE -->
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Maximum Group Size
+                        </label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            name="maxGroupSize"
+                            [(ngModel)]="tour.maxGroupSize"
+                            min="1">
+
+                    </div>
+
+
+                    <!-- IMAGE -->
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Tour Image
+                        </label>
+
+                        <input
+                            type="file"
+                            class="form-control"
+                            name="image"
+                            accept="image/jpeg,image/png,image/webp"
+                            (change)="onImageSelected($event)">
+
+                        <small class="text-muted">
+                            Select a new image only if you want to replace the current image.
+                            Maximum 5 MB.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- IMAGE PREVIEW -->
+
+                <div
+                    *ngIf="imagePreview"
+                    class="mb-4">
+
+                    <label class="form-label fw-semibold">
+                        Current / New Image
+                    </label>
+
+                    <div
+                        class="border rounded p-2 bg-light"
+                        style="max-width: 400px;">
+
+                        <img
+                            [src]="imagePreview"
+                            alt="Tour image"
+                            class="img-fluid rounded"
+                            style="
+                                width: 100%;
+                                max-height: 250px;
+                                object-fit: cover;
+                            ">
+
+                    </div>
+
+                </div>
+
+
+                <hr class="my-4">
+
+
+                <!-- PRICING -->
+
+                <h4 class="fw-bold mb-3">
+
+                    <i class="bi bi-currency-euro me-2"></i>
+
+                    Pricing
+
+                </h4>
+
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Price Per Person (€) *
+                        </label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            name="pricePerPerson"
+                            [(ngModel)]="tour.pricePerPerson"
+                            min="0"
+                            step="0.01"
+                            required>
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Discount Price (€)
+                        </label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            name="discountPrice"
+                            [(ngModel)]="tour.discountPrice"
+                            min="0"
+                            step="0.01">
+
+                    </div>
+
+                </div>
+
+
+                <hr class="my-4">
+
+
+                <!-- AVAILABILITY -->
+
+                <h4 class="fw-bold mb-3">
+
+                    <i class="bi bi-calendar-event me-2"></i>
+
+                    Availability
+
+                </h4>
+
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Available From
+                        </label>
+
+                        <input
+                            type="date"
+                            class="form-control"
+                            name="availableFrom"
+                            [(ngModel)]="tour.availableFrom">
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Available Until
+                        </label>
+
+                        <input
+                            type="date"
+                            class="form-control"
+                            name="availableUntil"
+                            [(ngModel)]="tour.availableUntil">
+
+                    </div>
+
+                </div>
+
+
+                <hr class="my-4">
+
+
+                <!-- ITINERARY -->
+
+                <h4 class="fw-bold mb-3">
+
+                    <i class="bi bi-signpost-split me-2"></i>
+
+                    Itinerary
+
+                </h4>
+
+
+                <textarea
+                    class="form-control mb-3"
+                    name="itinerary"
+                    [(ngModel)]="tour.itinerary"
+                    rows="8"></textarea>
+
+
+                <hr class="my-4">
+
+
+                <!-- INCLUSIONS / EXCLUSIONS -->
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Inclusions
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            name="inclusions"
+                            [(ngModel)]="tour.inclusions"
+                            rows="7"></textarea>
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Exclusions
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            name="exclusions"
+                            [(ngModel)]="tour.exclusions"
+                            rows="7"></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <hr class="my-4">
+
+
+                <!-- STATUS -->
+
+                <h4 class="fw-bold mb-3">
+
+                    <i class="bi bi-toggle-on me-2"></i>
+
+                    Status
+
+                </h4>
+
+
+                <div class="form-check form-switch mb-4">
+
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        role="switch"
+                        id="active"
+                        name="active"
+                        [(ngModel)]="tour.active">
+
+                    <label
+                        class="form-check-label fw-semibold"
+                        for="active">
+
+                        Active Tour Package
+
+                    </label>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+
+                <div class="d-flex justify-content-end gap-2">
+
+                    <button
+                        type="button"
+                        class="btn btn-outline-secondary"
+                        (click)="cancel()">
+
+                        <i class="bi bi-x-lg me-2"></i>
+
+                        Cancel
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        [disabled]="saving || tourForm.invalid">
+
+                        <span
+                            *ngIf="saving"
+                            class="spinner-border spinner-border-sm me-2">
+                        </span>
+
+                        <i
+                            *ngIf="!saving"
+                            class="bi bi-check-lg me-2">
+                        </i>
+
+                        {{ saving ? 'Saving...' : 'Save Changes' }}
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

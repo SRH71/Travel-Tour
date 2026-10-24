@@ -1,28 +1,42 @@
-# Angular specific
-/dist/
-/out-tsc/
-/tmp/
-/coverage/
-/e2e/test-output/
-/.angular/
-.angular/
+# Java / Spring Boot
+**/target/
+*.class
+*.log
 
-# Node modules and dependency files
-/node_modules/
-/package-lock.json
-/yarn.lock
+# Angular / Node.js
+**/node_modules/
+**/dist/
+**/.angular/
+**/out-tsc/
+**/tmp/
+**/coverage/
+**/e2e/test-output/
+**/.ng/
+**/.angular-cli.json
 
-# Environment files
-/.env
-
-# Angular CLI and build artefacts
-/.angular-cli.json
-/.ng/
+# Node dependency lock files (keep these if your deployment needs them)
+# Do not ignore package-lock.json or yarn.lock
 
 # TypeScript cache
 *.tsbuildinfo
 
-# Logs
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+**/application-local.properties
+**/application-local.yml
+
+# npm and yarn logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# IDE and operating system
+.idea/
+.vscode/
+.settings/
+.classpath
+.project
+.DS_Store
+Thumbs.db

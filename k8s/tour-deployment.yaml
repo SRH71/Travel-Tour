@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tour-service
+  namespace: travel
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tour-service
+  template:
+    metadata:
+      labels:
+        app: tour-service
+    spec:
+      containers:
+        - name: tour-service
+          image: tour-service:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8081
+          volumeMounts:
+            - name: tour-images
+              mountPath: /app/uploads/tours
+      volumes:
+        - name: tour-images
+          persistentVolumeClaim:
+            claimName: tour-images-pvc
+            

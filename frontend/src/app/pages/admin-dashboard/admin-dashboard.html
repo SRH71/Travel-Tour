@@ -1,0 +1,384 @@
+<div class="container-fluid">
+
+  <div class="row min-vh-100">
+
+    <!-- Sidebar -->
+    <aside class="col-md-3 col-lg-2 bg-dark text-white p-0">
+
+      <div class="p-4">
+
+        <h4 class="fw-bold mb-4">
+          Travel Admin
+        </h4>
+
+        <hr>
+
+        <ul class="nav nav-pills flex-column gap-2">
+
+          <!-- Dashboard -->
+          <li class="nav-item">
+
+            <a routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+              class="nav-link text-white">
+
+              <i class="bi bi-speedometer2 me-2"></i>
+
+              Dashboard
+
+            </a>
+
+          </li>
+
+
+          <!-- Tour Management -->
+          <li class="nav-item">
+
+            <a routerLink="/admin/tours" routerLinkActive="active" class="nav-link text-white">
+
+              <i class="bi bi-map me-2"></i>
+
+              Tour Management
+
+            </a>
+
+          </li>
+
+          <!-- Booking Management -->
+          <li class="nav-item">
+
+            <a routerLink="/admin/bookings" routerLinkActive="active" class="nav-link text-white">
+
+              <i class="bi bi-calendar-check me-2"></i>
+
+              Booking Management
+
+            </a>
+
+          </li>
+
+
+
+          <!-- Contact Management -->
+          <li class="nav-item">
+
+            <a routerLink="/admin/contacts" routerLinkActive="active" class="nav-link text-white">
+
+              <i class="bi bi-envelope me-2"></i>
+
+              Contact Management
+
+            </a>
+
+          </li>
+
+        </ul>
+
+        <hr>
+
+
+        <!-- Back to Website -->
+        <ul class="nav nav-pills flex-column">
+
+          <li class="nav-item">
+
+            <a routerLink="/" class="nav-link text-white">
+
+              <i class="bi bi-house me-2"></i>
+
+              Back to Website
+
+            </a>
+
+          </li>
+
+        </ul>
+
+      </div>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="col-md-9 col-lg-10 bg-light p-4">
+
+
+      <!-- Header -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+          <h1 class="fw-bold">
+            Admin Dashboard
+          </h1>
+
+          <p class="text-muted mb-0">
+            Manage your travel agency
+          </p>
+
+        </div>
+
+        <div>
+
+          <span class="badge bg-danger fs-6">
+            ADMIN
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- Statistics -->
+      <div class="row g-4 mb-4">
+
+
+        <!-- Total Tours -->
+        <div class="col-md-6 col-xl-3">
+
+          <div class="card shadow-sm border-0 h-100">
+
+            <div class="card-body">
+
+              <div class="d-flex justify-content-between align-items-center">
+
+                <div>
+
+                  <h6 class="text-muted">
+                    Total Tours
+                  </h6>
+
+                  <h2 class="fw-bold">
+                    0
+                  </h2>
+
+                </div>
+
+                <div class="fs-1 text-primary">
+
+                  <i class="bi bi-map"></i>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Active Tours -->
+        <div class="col-md-6 col-xl-3">
+
+          <div class="card shadow-sm border-0 h-100">
+
+            <div class="card-body">
+
+              <div class="d-flex justify-content-between align-items-center">
+
+                <div>
+
+                  <h6 class="text-muted">
+                    Active Tours
+                  </h6>
+
+                  <h2 class="fw-bold">
+                    0
+                  </h2>
+
+                </div>
+
+                <div class="fs-1 text-success">
+
+                  <i class="bi bi-check-circle"></i>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Inactive Tours -->
+        <div class="col-md-6 col-xl-3">
+
+          <div class="card shadow-sm border-0 h-100">
+
+            <div class="card-body">
+
+              <div class="d-flex justify-content-between align-items-center">
+
+                <div>
+
+                  <h6 class="text-muted">
+                    Inactive Tours
+                  </h6>
+
+                  <h2 class="fw-bold">
+                    0
+                  </h2>
+
+                </div>
+
+                <div class="fs-1 text-warning">
+
+                  <i class="bi bi-pause-circle"></i>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Administration -->
+        <div class="col-md-6 col-xl-3">
+
+          <div class="card shadow-sm border-0 h-100">
+
+            <div class="card-body">
+
+              <div class="d-flex justify-content-between align-items-center">
+
+                <div>
+
+                  <h6 class="text-muted">
+                    Account
+                  </h6>
+
+                  <h2 class="fw-bold">
+                    ADMIN
+                  </h2>
+
+                </div>
+
+                <div class="fs-1 text-danger">
+
+                  <i class="bi bi-person-gear"></i>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Tour Management -->
+      <div class="card shadow-sm border-0">
+
+        <div class="card-body p-4">
+
+          <div class="d-flex justify-content-between align-items-center">
+
+            <div>
+
+              <h3 class="fw-bold">
+                Tour Management
+              </h3>
+
+              <p class="text-muted">
+                Create, view, edit and delete tour packages.
+              </p>
+
+            </div>
+
+            <a routerLink="/admin/tours" class="btn btn-primary">
+
+              <i class="bi bi-map me-2"></i>
+
+              Manage Tours
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+      <!-- Booking Management -->
+      <div class="card shadow-sm border-0 mt-4">
+
+        <div class="card-body p-4">
+
+          <div class="d-flex justify-content-between align-items-center">
+
+            <div>
+
+              <h3 class="fw-bold">
+                Booking Management
+              </h3>
+
+              <p class="text-muted">
+                View and manage customer tour bookings.
+              </p>
+
+            </div>
+
+            <a routerLink="/admin/bookings" class="btn btn-primary">
+
+              <i class="bi bi-calendar-check me-2"></i>
+
+              Manage Bookings
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Contact Management -->
+      <div class="card shadow-sm border-0 mt-4">
+
+        <div class="card-body p-4">
+
+          <div class="d-flex justify-content-between align-items-center">
+
+            <div>
+
+              <h3 class="fw-bold">
+                Contact Management
+              </h3>
+
+              <p class="text-muted">
+                View and manage customer contact messages.
+              </p>
+
+            </div>
+
+            <a routerLink="/admin/contacts" class="btn btn-primary">
+
+              <i class="bi bi-envelope me-2"></i>
+
+              Manage Contacts
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+</div>

@@ -1,0 +1,14 @@
+spec:
+  template:
+    spec:
+      containers:
+      - name: auth-service
+        env:
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: EUREKA_INSTANCE_IP_ADDRESS
+          value: "$(POD_IP)"
+        - name: EUREKA_INSTANCE_PREFER_IP_ADDRESS
+          value: "true"

@@ -1,0 +1,210 @@
+<!-- Contact Hero -->
+<section class="contact-hero">
+  <div class="container text-center">
+    <h1>Contact Us</h1>
+    <p>
+      Have a question? We would love to hear from you.
+    </p>
+  </div>
+</section>
+
+
+<!-- Contact Section -->
+<section class="py-5">
+  <div class="container">
+
+    <div class="row g-5">
+
+      <!-- Contact Information -->
+      <div class="col-lg-5">
+
+        <h2 class="fw-bold mb-4">Get In Touch</h2>
+
+        <p class="text-muted mb-4">
+          Whether you are planning your next adventure or simply have a
+          question about one of our tours, our team is here to help.
+        </p>
+
+        <!-- Address -->
+        <div class="contact-info d-flex mb-4">
+          <div class="contact-icon">
+            <i class="bi bi-geo-alt-fill"></i>
+          </div>
+
+          <div>
+            <h5 class="fw-bold mb-1">Address</h5>
+            <p class="text-muted mb-0">
+              Kathmandu, Nepal
+            </p>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="contact-info d-flex mb-4">
+          <div class="contact-icon">
+            <i class="bi bi-envelope-fill"></i>
+          </div>
+
+          <div>
+            <h5 class="fw-bold mb-1">Email</h5>
+            <p class="text-muted mb-0">
+              info@travelagency.com
+            </p>
+          </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="contact-info d-flex mb-4">
+          <div class="contact-icon">
+            <i class="bi bi-telephone-fill"></i>
+          </div>
+
+          <div>
+            <h5 class="fw-bold mb-1">Phone</h5>
+            <p class="text-muted mb-0">
+              +977 1 2345678
+            </p>
+          </div>
+        </div>
+
+        <!-- Opening Hours -->
+        <div class="contact-info d-flex">
+          <div class="contact-icon">
+            <i class="bi bi-clock-fill"></i>
+          </div>
+
+          <div>
+            <h5 class="fw-bold mb-1">Opening Hours</h5>
+            <p class="text-muted mb-0">
+              Monday - Friday: 9:00 AM - 6:00 PM
+            </p>
+            <p class="text-muted mb-0">
+              Saturday: 10:00 AM - 4:00 PM
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- Contact Form -->
+      <div class="col-lg-7">
+
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4 p-md-5">
+
+            <h3 class="fw-bold mb-4">Send Us a Message</h3>
+
+            <form (ngSubmit)="submitForm()">
+
+              <!-- Name -->
+              <div class="mb-3">
+                <label for="name" class="form-label">
+                  Full Name
+                </label>
+
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="form-control"
+                  placeholder="Enter your name"
+                  [(ngModel)]="name"
+                  required
+                >
+              </div>
+
+
+              <!-- Email -->
+              <div class="mb-3">
+                <label for="email" class="form-label">
+                  Email Address
+                </label>
+
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-control"
+                  placeholder="Enter your email"
+                  [(ngModel)]="email"
+                  required
+                >
+              </div>
+
+
+              <!-- Subject -->
+              <div class="mb-3">
+                <label for="subject" class="form-label">
+                  Subject
+                </label>
+
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  class="form-control"
+                  placeholder="Enter subject"
+                  [(ngModel)]="subject"
+                  required
+                >
+              </div>
+
+
+              <!-- Message -->
+              <div class="mb-4">
+                <label for="message" class="form-label">
+                  Message
+                </label>
+
+                <textarea
+                  id="message"
+                  name="message"
+                  class="form-control"
+                  rows="6"
+                  placeholder="Write your message..."
+                  [(ngModel)]="message"
+                  required
+                ></textarea>
+              </div>
+
+
+              <!-- Submit -->
+              <button
+                type="submit"
+                class="btn btn-primary px-4"
+              >
+                Send Message
+              </button>
+
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Call To Action -->
+<section class="contact-cta py-5">
+  <div class="container text-center text-white">
+
+    <h2 class="fw-bold mb-3">
+      Ready for Your Next Adventure?
+    </h2>
+
+    <p class="mb-4">
+      Explore our amazing tour packages and start planning your journey.
+    </p>
+
+    <a routerLink="/tours" class="btn btn-light px-4">
+      Explore Tours
+    </a>
+
+  </div>
+</section>

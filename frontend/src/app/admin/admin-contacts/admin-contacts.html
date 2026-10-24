@@ -1,0 +1,330 @@
+<div class="container-fluid">
+
+    <div class="row min-vh-100">
+
+        <!-- Sidebar -->
+        <aside class="col-md-3 col-lg-2 bg-dark text-white p-0">
+
+            <div class="p-4">
+
+                <h4 class="fw-bold mb-4">
+                    Travel Admin
+                </h4>
+
+                <hr>
+
+                <ul class="nav nav-pills flex-column gap-2">
+
+                    <!-- Dashboard -->
+                    <li class="nav-item">
+
+                        <a routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                            class="nav-link text-white">
+
+                            <i class="bi bi-speedometer2 me-2"></i>
+                            Dashboard
+
+                        </a>
+
+                    </li>
+
+                    <!-- Tour Management -->
+                    <li class="nav-item">
+
+                        <a routerLink="/admin/tours" routerLinkActive="active" class="nav-link text-white">
+
+                            <i class="bi bi-map me-2"></i>
+                            Tour Management
+
+                        </a>
+
+                    </li>
+
+                    <!-- Contact Management -->
+                    <li class="nav-item">
+
+                        <a routerLink="/admin/contacts" routerLinkActive="active" class="nav-link text-white">
+
+                            <i class="bi bi-envelope me-2"></i>
+                            Contact Management
+
+                        </a>
+
+
+                    </li>
+
+                </ul>
+
+                <hr>
+
+                <!-- Back to Website -->
+                <ul class="nav nav-pills flex-column">
+
+                    <li class="nav-item">
+
+                        <a routerLink="/" class="nav-link text-white">
+
+                            <i class="bi bi-house me-2"></i>
+                            Back to Website
+
+                        </a>
+
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="col-md-9 col-lg-10 bg-light p-4">
+
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <div>
+
+                    <h1 class="fw-bold">
+                        Contact Management
+                    </h1>
+
+                    <p class="text-muted mb-0">
+                        View and manage customer contact messages.
+                    </p>
+
+                </div>
+
+                <div class="d-flex align-items-center gap-3">
+
+                    <a routerLink="/admin" class="btn btn-outline-secondary">
+
+                        <i class="bi bi-arrow-left me-2"></i>
+                        Back to Admin Dashboard
+
+                    </a>
+
+                    <span class="badge bg-danger fs-6">
+                        ADMIN
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Statistics -->
+            <div class="row g-4 mb-4">
+
+                <!-- Total Messages -->
+                <div class="col-md-4">
+
+                    <div class="card shadow-sm border-0 h-100">
+
+                        <div class="card-body">
+
+                            <div class="d-flex justify-content-between align-items-center">
+
+                                <div>
+
+                                    <h6 class="text-muted">
+                                        Total Messages
+                                    </h6>
+
+                                    <h2 class="fw-bold">
+                                        0
+                                    </h2>
+
+                                </div>
+
+                                <div class="fs-1 text-primary">
+                                    <i class="bi bi-envelope"></i>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Unread Messages -->
+                <div class="col-md-4">
+
+                    <div class="card shadow-sm border-0 h-100">
+
+                        <div class="card-body">
+
+                            <div class="d-flex justify-content-between align-items-center">
+
+                                <div>
+
+                                    <h6 class="text-muted">
+                                        Unread Messages
+                                    </h6>
+
+                                    <h2 class="fw-bold">
+                                        0
+                                    </h2>
+
+                                </div>
+
+                                <div class="fs-1 text-warning">
+                                    <i class="bi bi-envelope-exclamation"></i>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Account -->
+                <div class="col-md-4">
+
+                    <div class="card shadow-sm border-0 h-100">
+
+                        <div class="card-body">
+
+                            <div class="d-flex justify-content-between align-items-center">
+
+                                <div>
+
+                                    <h6 class="text-muted">
+                                        Account
+                                    </h6>
+
+                                    <h2 class="fw-bold">
+                                        ADMIN
+                                    </h2>
+
+                                </div>
+
+                                <div class="fs-1 text-danger">
+                                    <i class="bi bi-person-gear"></i>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Contact Messages -->
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body p-4">
+
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+
+                        <div>
+
+                            <h3 class="fw-bold mb-1">
+                                Contact Messages
+                            </h3>
+
+                            <p class="text-muted mb-0">
+                                Customer messages received through the website.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Table -->
+                    <div class="table-responsive">
+
+                        <table class="table table-hover align-middle">
+
+                            <thead class="table-dark">
+
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Subject</th>
+                                    <th>Message</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+
+                            </thead>                        
+
+                            <tbody>
+
+                                <!-- Temporary test row -->
+                                <tr *ngFor="let contact of contacts">
+
+                                    <td>
+                                        {{ contact.id }}
+                                    </td>
+
+                                    <td>
+                                        {{ contact.name }}
+                                    </td>
+
+                                    <td>
+                                        <a [href]="'mailto:' + contact.email">
+                                            {{ contact.email }}
+                                        </a>
+                                    </td>
+
+                                    <td>
+                                        {{ contact.subject || '—' }}
+                                    </td>
+
+                                    <td>
+                                        {{ contact.message }}
+                                    </td>
+
+                                    <td>
+                                        {{ contact.createdAt | date:'medium' }}
+                                    </td>
+
+                                    <td>
+
+                                        <button type="button" class="btn btn-sm btn-primary me-1" title="View">
+
+                                            <i class="bi bi-eye"></i>
+
+                                        </button>
+
+                                        <button type="button" class="btn btn-sm btn-danger" title="Delete"
+                                            (click)="deleteContact(contact.id!)">
+
+                                            <i class="bi bi-trash"></i>
+
+                                        </button>
+
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</div>

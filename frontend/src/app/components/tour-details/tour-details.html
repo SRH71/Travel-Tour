@@ -1,0 +1,227 @@
+<div class="container py-5">
+
+    <!-- Loading -->
+    <div *ngIf="loading" class="text-center py-5">
+
+        <div class="spinner-border" role="status"></div>
+
+        <p class="mt-3">
+            Loading tour details...
+        </p>
+
+    </div>
+
+
+    <!-- Error -->
+    <div *ngIf="!loading && errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+    </div>
+
+
+    <!-- Tour Details -->
+    <div *ngIf="!loading && tour" class="row g-5">
+
+        <!-- LEFT: IMAGE -->
+        <div class="col-lg-6">
+            <!--
+            <img *ngIf="tour.imageName" [src]="'http://localhost:8082/images/' + tour.imageName" [alt]="tour.name"
+                class="img-fluid rounded shadow tour-detail-image"> -->
+
+            <img *ngIf="tour.imageName" [src]="'http://localhost:8080/api/tours/images/' + tour.imageName"
+                [alt]="tour.name" class="img-fluid rounded shadow tour-detail-image">
+
+            <div *ngIf="!tour.imageName" class="tour-image-placeholder rounded shadow
+               d-flex align-items-center justify-content-center">
+                <span>No Image Available</span>
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT: BASIC INFORMATION -->
+        <div class="col-lg-6">
+
+            <h1 class="fw-bold mb-3">
+                {{ tour.name }}
+            </h1>
+
+            <h5 class="text-muted mb-4">
+                {{ tour.destination }}
+            </h5>
+
+
+            <!-- Description -->
+            <p *ngIf="tour.description" class="lead">
+                {{ tour.description }}
+            </p>
+
+
+            <!-- Tour Information -->
+            <div class="row g-3 mb-4">
+
+                <div class="col-sm-6" *ngIf="tour.durationDays">
+                    <div class="border rounded p-3 h-100">
+
+                        <small class="text-muted">
+                            Duration
+                        </small>
+
+                        <h5 class="mb-0">
+                            {{ tour.durationDays }} days
+                        </h5>
+
+                    </div>
+                </div>
+
+
+                <div class="col-sm-6" *ngIf="tour.maxGroupSize">
+                    <div class="border rounded p-3 h-100">
+
+                        <small class="text-muted">
+                            Maximum Group
+                        </small>
+
+                        <h5 class="mb-0">
+                            {{ tour.maxGroupSize }} people
+                        </h5>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- PRICE -->
+            <div class="mb-4">
+
+                <span *ngIf="tour.discountPrice" class="text-decoration-line-through
+                 text-muted fs-5 me-2">
+                    €{{ tour.pricePerPerson }}
+                </span>
+
+                <strong class="fs-2">
+                    €{{ tour.discountPrice || tour.pricePerPerson }}
+                </strong>
+
+                <span class="text-muted">
+                    / person
+                </span>
+
+            </div>
+
+
+            <!-- Availability -->
+            <div class="mb-4">
+
+                <h6 class="fw-bold">
+                    Availability
+                </h6>
+
+                <p class="mb-1" *ngIf="tour.availableFrom">
+                    From: {{ tour.availableFrom }}
+                </p>
+
+                <p class="mb-1" *ngIf="tour.availableUntil">
+                    Until: {{ tour.availableUntil }}
+                </p>
+
+            </div>
+
+
+            <!-- Actions -->
+            <!-- Actions -->
+            <div class="d-flex gap-2">
+
+                <a routerLink="/tours" class="btn btn-outline-secondary">
+                    ← Back to Tours
+                </a>
+
+                <a *ngIf="tour" [routerLink]="['/booking', tour.id]" class="btn btn-primary">
+                    Book Now
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ITINERARY -->
+    <div *ngIf="!loading && tour" class="row mt-5">
+
+        <div class="col-12" *ngIf="tour.itinerary">
+
+            <div class="card shadow-sm">
+
+                <div class="card-body">
+
+                    <h3 class="fw-bold mb-3">
+                        Itinerary
+                    </h3>
+
+                    <p class="mb-0">
+                        {{ tour.itinerary }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- INCLUSIONS / EXCLUSIONS -->
+    <div *ngIf="!loading && tour" class="row g-4 mt-1">
+
+        <!-- Inclusions -->
+        <div class="col-md-6" *ngIf="tour.inclusions">
+
+            <div class="card shadow-sm h-100">
+
+                <div class="card-body">
+
+                    <h3 class="fw-bold mb-3">
+                        Inclusions
+                    </h3>
+
+                    <p class="mb-0">
+                        {{ tour.inclusions }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Exclusions -->
+        <div class="col-md-6" *ngIf="tour.exclusions">
+
+            <div class="card shadow-sm h-100">
+
+                <div class="card-body">
+
+                    <h3 class="fw-bold mb-3">
+                        Exclusions
+                    </h3>
+
+                    <p class="mb-0">
+                        {{ tour.exclusions }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+</div>

@@ -1,0 +1,30 @@
+.tour-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+.tour-card:hover {
+  transform: translateY(-5px);
+}
+
+.tour-image {
+  height: 220px;
+  object-fit: cover;
+}
+
+.tour-image-placeholder {
+  height: 220px;
+  background: #f1f1f1;
+  color: #777;
+}
+
+.card-title {
+  min-height: 48px;
+}
+
+.card-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

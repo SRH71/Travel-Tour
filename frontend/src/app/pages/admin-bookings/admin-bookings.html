@@ -1,0 +1,203 @@
+<div class="admin-bookings">
+
+  <!-- Header -->
+
+  <div class="page-header">
+
+```
+<div>
+  <h1>Bookings</h1>
+  <p>Manage customer tour bookings</p>
+</div>
+
+<button
+  type="button"
+  class="btn btn-outline-primary"
+  (click)="loadBookings()">
+
+  Refresh
+
+</button>
+```
+
+  </div>
+
+  <!-- Loading -->
+
+  <div *ngIf="loading" class="loading-section">
+
+```
+<div class="spinner-border" role="status"></div>
+
+<p>Loading bookings...</p>
+```
+
+  </div>
+
+  <!-- Error -->
+
+  <div
+    *ngIf="!loading && errorMessage"
+    class="alert alert-danger">
+
+```
+{{ errorMessage }}
+```
+
+  </div>
+
+  <!-- No bookings -->
+
+  <div
+    *ngIf="!loading && !errorMessage && bookings.length === 0"
+    class="empty-section">
+
+```
+<h4>No bookings found</h4>
+
+<p>There are currently no bookings.</p>
+```
+
+  </div>
+
+  <!-- Bookings Table -->
+
+  <div
+    *ngIf="!loading && !errorMessage && bookings.length > 0"
+    class="table-card">
+
+```
+<div class="table-responsive">
+
+  <table class="table table-hover align-middle mb-0">
+
+    <thead>
+
+      <tr>
+        <th>ID</th>
+        <th>Booking Date</th>
+        <th>People</th>
+        <th>Status</th>
+        <th>Total Price</th>
+        <th>Tour ID</th>
+        <th>User ID</th>
+        <th>Actions</th>
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let booking of bookings">
+
+        <!-- ID -->
+        <td>
+          {{ booking.id }}
+        </td>
+
+        <!-- Booking Date -->
+        <td>
+          {{ booking.bookingDate }}
+        </td>
+
+        <!-- People -->
+        <td>
+          {{ booking.numberOfPeople }}
+        </td>
+
+        <!-- Status -->
+        <td>
+
+          <span
+            class="badge"
+            [ngClass]="{
+              'bg-warning text-dark': booking.status === 'PENDING',
+              'bg-success': booking.status === 'CONFIRMED',
+              'bg-danger': booking.status === 'CANCELLED',
+              'bg-secondary':
+                booking.status !== 'PENDING' &&
+                booking.status !== 'CONFIRMED' &&
+                booking.status !== 'CANCELLED'
+            }">
+
+            {{ booking.status }}
+
+          </span>
+
+        </td>
+
+        <!-- Total Price -->
+        <td>
+          €{{ booking.totalPrice }}
+        </td>
+
+        <!-- Tour ID -->
+        <td>
+          {{ booking.tourId }}
+        </td>
+
+        <!-- User ID -->
+        <td>
+          {{ booking.userId }}
+        </td>
+
+        <!-- Actions -->
+        <td>
+
+          <!-- Pending booking -->
+          <ng-container *ngIf="booking.status === 'PENDING'">
+
+            <button
+              type="button"
+              class="btn btn-sm btn-success me-2"
+              (click)="confirmBooking(booking.id!)">
+
+              Confirm
+
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-sm btn-danger"
+              (click)="cancelBooking(booking.id!)">
+
+              Cancel
+
+            </button>
+
+          </ng-container>
+
+
+          <!-- Confirmed booking -->
+          <span
+            *ngIf="booking.status === 'CONFIRMED'"
+            class="text-success fw-semibold">
+
+            ✓ Confirmed
+
+          </span>
+
+
+          <!-- Cancelled booking -->
+          <span
+            *ngIf="booking.status === 'CANCELLED'"
+            class="text-danger fw-semibold">
+
+            ✕ Cancelled
+
+          </span>
+
+        </td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>
+```
+
+  </div>
+
+</div>

@@ -1,0 +1,128 @@
+<div class="container py-5">
+
+  <div class="text-center mb-5">
+    <h1 class="display-5 fw-bold">Our Tours</h1>
+    <p class="text-muted">
+      Discover amazing destinations and unforgettable experiences.
+    </p>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="text-center py-5">
+    <div class="spinner-border" role="status"></div>
+    <p class="mt-3">Loading tours...</p>
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="!loading && errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <!-- No tours -->
+  <div *ngIf="!loading && !errorMessage && tours.length === 0" class="alert alert-info text-center">
+    No tours are currently available.
+  </div>
+
+  <!-- Tours -->
+  <div class="row g-4" *ngIf="!loading && tours.length > 0">
+
+    <div class="col-md-6 col-lg-4" *ngFor="let tour of tours">
+
+      <div class="card h-100 shadow-sm tour-card">
+
+        <!-- Image -->
+        <!--
+        <img
+          *ngIf="tour.imageName"
+          [src]="'http://localhost:8082/images/' + tour.imageName"
+          [alt]="tour.name"
+          class="card-img-top tour-image"
+        >
+
+        <div
+          *ngIf="!tour.imageName"
+          class="tour-image-placeholder d-flex align-items-center justify-content-center"
+        >
+          <span>No Image</span>
+        </div>
+      -->
+
+        <!-- Image 
+        <img *ngIf="tour.imageName" [src]="'http://localhost:8080/api/tours/images/' + tour.imageName" [alt]="tour.name"
+          class="card-img-top tour-image">
+
+          -->
+
+        <img *ngIf="tour.imageName" [src]="'http://localhost:8080/api/tours/images/' + tour.imageName" [alt]="tour.name"
+          class="card-img-top tour-image">
+
+
+
+
+
+        <div *ngIf="!tour.imageName" class="tour-image-placeholder d-flex align-items-center justify-content-center">
+          <span>No Image</span>
+        </div>
+
+
+
+
+
+        <div class="card-body d-flex flex-column">
+
+          <h5 class="card-title">
+            {{ tour.name }}
+          </h5>
+
+          <p class="text-muted mb-2">
+            {{ tour.destination }}
+          </p>
+
+          <p class="card-text">
+            {{ tour.description }}
+          </p>
+
+          <div class="mb-3">
+
+            <span class="badge bg-secondary me-2" *ngIf="tour.durationDays">
+              {{ tour.durationDays }} days
+            </span>
+
+            <span class="badge bg-secondary" *ngIf="tour.maxGroupSize">
+              Max {{ tour.maxGroupSize }} people
+            </span>
+
+          </div>
+
+          <div class="mt-auto">
+
+            <div class="mb-3">
+
+              <span *ngIf="tour.discountPrice" class="text-decoration-line-through text-muted me-2">
+                €{{ tour.pricePerPerson }}
+              </span>
+
+              <strong class="fs-5">
+                €{{ tour.discountPrice || tour.pricePerPerson }}
+              </strong>
+
+              <small class="text-muted">
+                / person
+              </small>
+
+            </div>
+
+            <a [routerLink]="['/tours', tour.id]" class="btn btn-primary w-100">
+              View Details
+            </a>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

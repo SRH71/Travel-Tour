@@ -1,0 +1,537 @@
+<div class="container-fluid p-4">
+
+    <!-- ========================= -->
+    <!-- HEADER -->
+    <!-- ========================= -->
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h1 class="fw-bold mb-1">
+                Create Tour
+            </h1>
+
+            <p class="text-muted mb-0">
+                Create a new tour package.
+            </p>
+        </div>
+
+        <a
+            routerLink="/admin/tours"
+            class="btn btn-outline-secondary">
+
+            <i class="bi bi-arrow-left me-2"></i>
+            Back to Tours
+
+        </a>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- ERROR MESSAGE -->
+    <!-- ========================= -->
+
+    <div
+        *ngIf="errorMessage"
+        class="alert alert-danger">
+
+        <i class="bi bi-exclamation-triangle me-2"></i>
+
+        {{ errorMessage }}
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- FORM CARD -->
+    <!-- ========================= -->
+
+    <div class="card shadow-sm border-0">
+
+        <div class="card-body p-4">
+
+            <form
+                (ngSubmit)="createTour()"
+                #tourForm="ngForm">
+
+
+                <!-- ========================= -->
+                <!-- BASIC INFORMATION -->
+                <!-- ========================= -->
+
+                <h4 class="fw-bold mb-3">
+
+                    <i class="bi bi-info-circle me-2"></i>
+
+                    Basic Information
+
+                </h4>
+
+
+                <div class="row">
+
+                    <!-- Tour Name -->
+
+                    <div class="col-md-8 mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Tour Name *
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="name"
+                            [(ngModel)]="tour.name"
+                            required
+                            placeholder="Example: Everest Base Camp Trek">
+
+                    </div>
+
+
+                    <!-- Destination -->
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Destination
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="destination"
+                            [(ngModel)]="tour.destination"
+                            placeholder="Example: Everest Region, Nepal">
+
+                    </div>
+
+
+                    <!-- Description -->
+
+                    <div class="col-12 mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Description
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            name="description"
+                            [(ngModel)]="tour.description"
+                            rows="4"
+                            placeholder="Describe the tour package..."></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <hr class="my-4">
+
+
+                <!-- ========================= -->
+                <!-- TOUR DETAILS -->
+                <!-- ========================= -->
+
+                <h4 class="fw-bold mb-3">
+
+                    <i class="bi bi-map me-2"></i>
+
+                    Tour Details
+
+                </h4>
+
+
+                <div class="row">
+
+                    <!-- Duration -->
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Duration (Days)
+                        </label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            name="durationDays"
+                            [(ngModel)]="tour.durationDays"
+                            min="1"
+                            placeholder="14">
+
+                    </div>
+
+
+                    <!-- Group Size -->
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Maximum Group Size
+                        </label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            name="maxGroupSize"
+                            [(ngModel)]="tour.maxGroupSize"
+                            min="1"
+                            placeholder="12">
+
+                    </div>
+
+
+                    <!-- Image Upload -->
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Tour Image
+                        </label>
+
+                        <input
+                            type="file"
+                            class="form-control"
+                            name="image"
+                            accept="image/jpeg,image/png,image/webp"
+                            (change)="onImageSelected($event)">
+
+                        <small class="text-muted">
+
+                            JPG, PNG or WEBP.
+                            Maximum 5 MB.
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ========================= -->
+                <!-- IMAGE PREVIEW -->
+                <!-- ========================= -->
+
+                <div
+                    *ngIf="imagePreview"
+                    class="mb-4">
+
+                    <label class="form-label fw-semibold">
+                        Image Preview
+                    </label>
+
+                    <div
+                        class="border rounded p-2 bg-light"
+                        style="max-width: 400px;">
+
+                        <img
+                            [src]="imagePreview"
+                            alt="Tour image preview"
+                            class="img-fluid rounded"
+                            style="
+                                width: 100%;
+                                max-height: 250px;
+                                object-fit: cover;
+                            ">
+
+                    </div>
+
+                </div>
+
+
+                <hr class="my-4">
+
+
+                <!-- ========================= -->
+                <!-- PRICING -->
+                <!-- ========================= -->
+
+                <h4 class="fw-bold mb-3">
+
+                    <i class="bi bi-currency-euro me-2"></i>
+
+                    Pricing
+
+                </h4>
+
+
+                <div class="row">
+
+                    <!-- Price -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Price Per Person (€) *
+                        </label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            name="pricePerPerson"
+                            [(ngModel)]="tour.pricePerPerson"
+                            min="0"
+                            step="0.01"
+                            required
+                            placeholder="1699.00">
+
+                    </div>
+
+
+                    <!-- Discount -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Discount Price (€)
+                        </label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            name="discountPrice"
+                            [(ngModel)]="tour.discountPrice"
+                            min="0"
+                            step="0.01"
+                            placeholder="1499.00">
+
+                    </div>
+
+                </div>
+
+
+                <hr class="my-4">
+
+
+                <!-- ========================= -->
+                <!-- AVAILABILITY -->
+                <!-- ========================= -->
+
+                <h4 class="fw-bold mb-3">
+
+                    <i class="bi bi-calendar-event me-2"></i>
+
+                    Availability
+
+                </h4>
+
+
+                <div class="row">
+
+                    <!-- Available From -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Available From
+                        </label>
+
+                        <input
+                            type="date"
+                            class="form-control"
+                            name="availableFrom"
+                            [(ngModel)]="tour.availableFrom">
+
+                    </div>
+
+
+                    <!-- Available Until -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Available Until
+                        </label>
+
+                        <input
+                            type="date"
+                            class="form-control"
+                            name="availableUntil"
+                            [(ngModel)]="tour.availableUntil">
+
+                    </div>
+
+                </div>
+
+
+                <hr class="my-4">
+
+
+                <!-- ========================= -->
+                <!-- ITINERARY -->
+                <!-- ========================= -->
+
+                <h4 class="fw-bold mb-3">
+
+                    <i class="bi bi-signpost-split me-2"></i>
+
+                    Itinerary
+
+                </h4>
+
+
+                <div class="mb-3">
+
+                    <textarea
+                        class="form-control"
+                        name="itinerary"
+                        [(ngModel)]="tour.itinerary"
+                        rows="8"
+                        placeholder="Day 1: Arrival in Kathmandu
+Day 2: Kathmandu sightseeing and trek preparation
+Day 3: Fly to Lukla and trek to Phakding
+Day 4: Trek to Namche Bazaar
+Day 5: Acclimatization at Namche
+Day 6: Trek to Tengboche..."></textarea>
+
+                </div>
+
+
+                <hr class="my-4">
+
+
+                <!-- ========================= -->
+                <!-- INCLUSIONS / EXCLUSIONS -->
+                <!-- ========================= -->
+
+                <div class="row">
+
+                    <!-- Inclusions -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Inclusions
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            name="inclusions"
+                            [(ngModel)]="tour.inclusions"
+                            rows="7"
+                            placeholder="Airport transfers
+Kathmandu hotel
+Domestic flights
+Trekking permits
+Experienced guide
+Porter
+Accommodation
+Meals during trekking"></textarea>
+
+                    </div>
+
+
+                    <!-- Exclusions -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Exclusions
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            name="exclusions"
+                            [(ngModel)]="tour.exclusions"
+                            rows="7"
+                            placeholder="International flights
+Nepal visa
+Travel insurance
+Personal expenses
+Alcoholic beverages
+Tips"></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <hr class="my-4">
+
+
+                <!-- ========================= -->
+                <!-- STATUS -->
+                <!-- ========================= -->
+
+                <h4 class="fw-bold mb-3">
+
+                    <i class="bi bi-toggle-on me-2"></i>
+
+                    Status
+
+                </h4>
+
+
+                <div class="form-check form-switch mb-4">
+
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        role="switch"
+                        id="active"
+                        name="active"
+                        [(ngModel)]="tour.active">
+
+                    <label
+                        class="form-check-label fw-semibold"
+                        for="active">
+
+                        Active Tour Package
+
+                    </label>
+
+                </div>
+
+
+                <!-- ========================= -->
+                <!-- BUTTONS -->
+                <!-- ========================= -->
+
+                <div class="d-flex justify-content-end gap-2">
+
+                    <button
+                        type="button"
+                        class="btn btn-outline-secondary"
+                        (click)="cancel()">
+
+                        <i class="bi bi-x-lg me-2"></i>
+
+                        Cancel
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        [disabled]="loading || tourForm.invalid">
+
+                        <span
+                            *ngIf="loading"
+                            class="spinner-border spinner-border-sm me-2">
+                        </span>
+
+
+                        <i
+                            *ngIf="!loading"
+                            class="bi bi-plus-lg me-2">
+                        </i>
+
+
+                        {{ loading ? 'Creating...' : 'Create Tour' }}
+
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

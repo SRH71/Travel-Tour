@@ -1,0 +1,98 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+
+      <div class="card shadow">
+        <div class="card-body p-4">
+
+          <h2 class="text-center mb-4">Create Account</h2>
+
+          <!-- Success message -->
+          <div
+            *ngIf="successMessage"
+            class="alert alert-success">
+            {{ successMessage }}
+          </div>
+
+          <!-- Error message -->
+          <div
+            *ngIf="errorMessage"
+            class="alert alert-danger">
+            {{ errorMessage }}
+          </div>
+
+          <form (ngSubmit)="register()">
+
+            <!-- Username -->
+            <div class="mb-3">
+              <label for="username" class="form-label">
+                Username
+              </label>
+
+              <input
+                type="text"
+                id="username"
+                name="username"
+                class="form-control"
+                [(ngModel)]="user.username"
+                placeholder="Enter username"
+                required>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="email" class="form-label">
+                Email
+              </label>
+
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-control"
+                [(ngModel)]="user.email"
+                placeholder="Enter email"
+                required>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3">
+              <label for="password" class="form-label">
+                Password
+              </label>
+
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="form-control"
+                [(ngModel)]="user.password"
+                placeholder="Enter password"
+                required>
+            </div>
+
+            <!-- Register -->
+            <button
+              type="submit"
+              class="btn btn-primary w-100">
+              Register
+            </button>
+
+          </form>
+
+          <div class="text-center mt-3">
+            <span>Already have an account?</span>
+
+            <a
+              routerLink="/login"
+              class="ms-1">
+              Login
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: tour-images-pv
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /run/desktop/mnt/host/s/Java-Angular/travel_project/backend/tour-service/uploads/tours
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: tour-images-pvc
+  namespace: travel
+spec:
+  storageClassName: ""
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

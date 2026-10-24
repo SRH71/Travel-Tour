@@ -1,0 +1,324 @@
+Travel_Tour/
+│
+├── backend/
+│   │
+│   ├── discovery-server/
+│   │   ├── pom.xml
+│   │   └── src/
+│   │       └── main/
+│   │           ├── java/
+│   │           │   └── com/travel/discovery/
+│   │           │       └── DiscoveryServerApplication.java
+│   │           │
+│   │           └── resources/
+│   │               └── application.properties
+│   │
+│   ├── api-gateway/
+│   │   ├── pom.xml
+│   │   └── src/
+│   │       └── main/
+│   │           ├── java/
+│   │           │   └── com/travel/gateway/
+│   │           │       └── ApiGatewayApplication.java
+│   │           │
+│   │           └── resources/
+│   │               └── application.properties
+│   │
+│   ├── auth-service/
+│   │   ├── pom.xml
+│   │   └── src/
+│   │       └── main/
+│   │           ├── java/
+│   │           │   └── com/travel/auth/
+│   │           │       │
+│   │           │       ├── AuthServiceApplication.java
+│   │           │       │
+│   │           │       ├── controller/
+│   │           │       │   └── AuthController.java
+│   │           │       │
+│   │           │       ├── entity/
+│   │           │       │   └── User.java
+│   │           │       │
+│   │           │       ├── repository/
+│   │           │       │   └── UserRepository.java
+│   │           │       │
+│   │           │       ├── service/
+│   │           │       │   └── AuthService.java
+│   │           │       │
+│   │           │       ├── security/
+│   │           │       │   ├── SecurityConfig.java
+│   │           │       │   ├── JwtService.java
+│   │           │       │   └── JwtAuthenticationFilter.java
+│   │           │       │
+│   │           │       └── dto/
+│   │           │           ├── LoginRequest.java
+│   │           │           ├── RegisterRequest.java
+│   │           │           └── AuthResponse.java
+│   │           │
+│   │           └── resources/
+│   │               └── application.properties
+│   │
+│   ├── tour-service/
+│   │   ├── pom.xml
+│   │   └── src/
+│   │       └── main/
+│   │           ├── java/
+│   │           │   └── com/travel/tour/
+│   │           │       ├── TourServiceApplication.java
+│   │           │       ├── controller/
+│   │           │       ├── entity/
+│   │           │       ├── repository/
+│   │           │       └── service/
+│   │           │
+│   │           └── resources/
+│   │               └── application.properties
+│   │
+│   └── contact-service/
+│       ├── pom.xml
+│       └── src/
+│           └── main/
+│               ├── java/
+│               │   └── com/travel/contact/
+│               │       ├── ContactServiceApplication.java
+│               │       ├── controller/
+│               │       ├── entity/
+│               │       ├── repository/
+│               │       └── service/
+│               │
+│               └── resources/
+│                   └── application.properties
+│
+│
+├── frontend/
+│   │
+│   ├── angular.json
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── tsconfig.json
+│   │
+│   └── src/
+│       ├── index.html
+│       ├── main.ts
+│       ├── styles.css
+│       │
+│       └── app/
+│           ├── app.component.ts
+│           ├── app.component.html
+│           ├── app.config.ts
+│           ├── app.routes.ts
+│           │
+│           ├── core/
+│           │   ├── guards/
+│           │   │   ├── auth.guard.ts
+│           │   │   └── role.guard.ts
+│           │   │
+│           │   ├── interceptors/
+│           │   │   └── auth.interceptor.ts
+│           │   │
+│           │   └── services/
+│           │       ├── auth.service.ts
+│           │       ├── tour.service.ts
+│           │       └── contact.service.ts
+│           │
+│           ├── models/
+│           │   ├── user.ts
+│           │   ├── tour.ts
+│           │   └── auth-response.ts
+│           │
+│           ├── components/
+│           │   ├── home/
+│           │   ├── about/
+│           │   ├── contact/
+│           │   ├── tours/
+│           │   ├── tour-details/
+│           │   ├── login/
+│           │   ├── register/
+│           │   ├── user-dashboard/
+│           │   └── admin-dashboard/
+│           │
+│           └── shared/
+│               ├── navbar/
+│               └── footer/
+│
+│
+├── database/
+│   │
+│   ├── auth_db/
+│   ├── tour_db/
+│   └── contact_db/
+│
+│
+├── docker/
+│   ├── discovery-server/
+│   ├── api-gateway/
+│   ├── auth-service/
+│   ├── tour-service/
+│   ├── contact-service/
+│   └── frontend/
+│
+│
+├── kubernetes/
+│   ├── namespace.yaml
+│   ├── discovery-server.yaml
+│   ├── api-gateway.yaml
+│   ├── auth-service.yaml
+│   ├── tour-service.yaml
+│   ├── contact-service.yaml
+│   ├── frontend.yaml
+│   └── mysql.yaml
+│
+└── README.md
+
+
+                         ┌──────────────────┐
+                         │     Angular      │
+                         │    Frontend      │
+                         │     :4200        │
+                         └────────┬─────────┘
+                                  │
+                                  │ HTTP + JWT
+                                  ▼
+                         ┌──────────────────┐
+                         │   API Gateway    │
+                         │      :8080       │
+                         └────────┬─────────┘
+                                  │
+                    ┌─────────────┼─────────────┐
+                    │             │             │
+                    ▼             ▼             ▼
+             ┌───────────┐ ┌───────────┐ ┌──────────────┐
+             │   Auth    │ │   Tour    │ │   Contact    │
+             │  Service  │ │  Service  │ │   Service    │
+             │   :8081   │ │   :8082   │ │    :8083     │
+             └─────┬─────┘ └─────┬─────┘ └──────┬───────┘
+                   │              │              │
+                   ▼              ▼              ▼
+             ┌──────────┐   ┌──────────┐   ┌──────────┐
+             │ MySQL    │   │ MySQL    │   │ MySQL    │
+             │ auth_db  │   │ tour_db  │   │contact_db│
+             └──────────┘   └──────────┘   └──────────┘
+
+
+                         ┌──────────────────┐
+                         │  Eureka Server   │
+                         │      :8761       │
+                         └──────────────────┘
+                           ▲      ▲      ▲
+                           │      │      │
+                         Auth    Tour   Contact
+
+
+                         ┌──────────────────┐
+                         │     Angular      │
+                         │    Frontend      │
+                         │     :4200        │
+                         └────────┬─────────┘
+                                  │
+                                  │ HTTP + JWT
+                                  ▼
+                         ┌──────────────────┐
+                         │   API Gateway    │
+                         │      :8080       │
+                         └────────┬─────────┘
+                                  │
+                    ┌─────────────┼─────────────┐
+                    │             │             │
+                    ▼             ▼             ▼
+             ┌───────────┐ ┌───────────┐ ┌──────────────┐
+             │   Auth    │ │   Tour    │ │   Contact    │
+             │  Service  │ │  Service  │ │   Service    │
+             │   :8081   │ │   :8082   │ │    :8083     │
+             └─────┬─────┘ └─────┬─────┘ └──────┬───────┘
+                   │              │              │
+                   ▼              ▼              ▼
+             ┌──────────┐   ┌──────────┐   ┌──────────┐
+             │ MySQL    │   │ MySQL    │   │ MySQL    │
+             │ auth_db  │   │ tour_db  │   │contact_db│
+             └──────────┘   └──────────┘   └──────────┘
+
+
+                         ┌──────────────────┐
+                         │  Eureka Server   │
+                         │      :8761       │
+                         └──────────────────┘
+                           ▲      ▲      ▲
+                           │      │      │
+                         Auth    Tour   Contact
+
+
+
+
+
+Development order
+
+I strongly recommend not starting with Kubernetes immediately. Build the system in layers:
+
+Phase 1 — Architecture
+
+Create the parent project structure
+Create Eureka Server
+Create API Gateway
+Create the microservices
+Configure Eureka registration
+
+Phase 2 — Backend
+
+MySQL databases
+JPA entities/repositories
+REST controllers
+Service layer
+Inter-service communication
+
+Phase 3 — Security
+
+Auth service
+User registration/login
+JWT generation
+Spring Security
+Gateway JWT authentication
+Role-based authorization: USER / ADMIN
+
+Phase 4 — Frontend
+
+Angular project
+Bootstrap
+Home
+About
+Contact
+Tours
+Tour details
+Login/Register
+User dashboard
+Admin dashboard
+
+Phase 5 — Testing
+
+Test every REST endpoint with Postman
+Test JWT authentication
+Test service-to-service communication
+Test Angular → Gateway → Microservice
+
+Phase 6 — Docker
+
+Dockerfile for each Spring Boot service
+Angular Dockerfile
+MySQL container
+Docker networking
+Test the complete application with Docker
+
+Phase 7 — Kubernetes
+
+Deployments
+Services
+ConfigMaps
+Secrets
+Eureka deployment
+Gateway deployment
+Microservice deployments
+MySQL
+Angular
+End-to-end Kubernetes testing
+
+This gives us a proper microservices project, rather than simply taking the previous monolithic Travel Agency application and putting Docker around it.
+
+Next step should be the project structure first, then we create Eureka Server and get that running before touching the other services.                                                  

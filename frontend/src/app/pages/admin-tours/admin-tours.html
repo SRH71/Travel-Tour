@@ -1,0 +1,278 @@
+<div class="container-fluid p-4">
+
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+      <h1 class="fw-bold mb-1">
+        Tour Management
+      </h1>
+
+      <p class="text-muted mb-0">
+        Create, view, update and delete tour packages.
+      </p>
+
+    </div>
+
+
+    <!-- Admin User / Logout -->
+    <div class="d-flex align-items-center gap-3">
+      <!-- Back to Admin Dashboard -->
+      <a routerLink="/admin" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left me-2"></i>
+        Back to Admin Dashboard
+      </a>
+
+      <div class="text-end">
+
+        <div class="fw-bold">
+          {{ username }}
+        </div>
+
+        <small class="text-muted">
+          Administrator
+        </small>
+
+      </div>
+
+      <span class="badge bg-danger">
+        ADMIN
+      </span>
+
+      <button type="button" class="btn btn-outline-danger" (click)="logout()">
+
+        <i class="bi bi-box-arrow-right me-2"></i>
+
+        Logout
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- Actions -->
+  <div class="d-flex justify-content-end mb-3">
+
+    <a routerLink="/admin/tours/create" class="btn btn-primary">
+
+      <i class="bi bi-plus-lg me-2"></i>
+
+      Create Tour
+
+    </a>
+
+  </div>
+
+
+  <!-- Error -->
+  <div *ngIf="errorMessage" class="alert alert-danger">
+
+    {{ errorMessage }}
+
+  </div>
+
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="text-center py-5">
+
+    <div class="spinner-border text-primary" role="status">
+
+    </div>
+
+    <p class="mt-3 text-muted">
+      Loading tour packages...
+    </p>
+
+  </div>
+
+
+  <!-- Tours Table -->
+  <div *ngIf="!loading" class="card shadow-sm border-0">
+
+    <div class="card-body">
+
+      <div class="table-responsive">
+
+        <table class="table table-hover align-middle">
+
+          <thead class="table-dark">
+
+            <tr>
+
+              <th>ID</th>
+
+              <th>Image</th>
+
+              <th>Tour</th>
+
+              <th>Destination</th>
+
+              <th>Duration</th>
+
+              <th>Group Size</th>
+
+              <th>Price</th>
+
+              <th>Status</th>
+
+              <th class="text-end">
+                Actions
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+
+            <tr *ngFor="let tour of tours">
+
+              <td>
+                {{ tour.id }}
+              </td>
+
+              <td>
+
+                <img [src]="getImageUrl(tour.imageName)" [alt]="tour.name" class="tour-thumbnail">
+
+              </td>
+
+
+              <td>
+
+                <div class="fw-bold">
+                  {{ tour.name }}
+                </div>
+
+                <small class="text-muted">
+                  {{ tour.description }}
+                </small>
+
+              </td>
+
+
+              <td>
+                {{ tour.destination || '—' }}
+              </td>
+
+
+              <td>
+
+                <span *ngIf="tour.durationDays">
+                  {{ tour.durationDays }} days
+                </span>
+
+                <span *ngIf="!tour.durationDays">
+                  —
+                </span>
+
+              </td>
+
+
+              <td>
+
+                <span *ngIf="tour.maxGroupSize">
+                  {{ tour.maxGroupSize }}
+                </span>
+
+                <span *ngIf="!tour.maxGroupSize">
+                  —
+                </span>
+
+              </td>
+
+
+              <td>
+
+                <span class="fw-bold">
+                  €{{ tour.pricePerPerson }}
+                </span>
+
+                <br>
+
+                <small *ngIf="tour.discountPrice" class="text-success">
+
+                  €{{ tour.discountPrice }}
+
+                </small>
+
+              </td>
+
+
+              <td>
+
+                <span *ngIf="tour.active" class="badge bg-success">
+
+                  ACTIVE
+
+                </span>
+
+                <span *ngIf="!tour.active" class="badge bg-secondary">
+
+                  INACTIVE
+
+                </span>
+
+              </td>
+
+
+              <td class="text-end">
+
+                <a [routerLink]="[
+                    '/admin/tours/edit',
+                    tour.id
+                  ]" class="btn btn-sm btn-outline-primary me-2">
+
+                  <i class="bi bi-pencil"></i>
+
+                  Edit
+
+                </a>
+
+
+                <button type="button" class="btn btn-sm btn-outline-danger" (click)="deleteTour(tour.id)">
+
+                  <i class="bi bi-trash"></i>
+
+                  Delete
+
+                </button>
+
+              </td>
+
+            </tr>
+
+
+            <!-- No tours -->
+            <tr *ngIf="tours.length === 0">
+
+              <td colspan="9" class="text-center py-5">
+
+                <i class="bi bi-map fs-1 text-muted">
+                </i>
+
+                <p class="mt-3 mb-0 text-muted">
+
+                  No tour packages found.
+
+                </p>
+
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
