@@ -1,16 +1,4 @@
-/*
-import { Component } from '@angular/core';
 
-@Component({
-  selector: 'app-my-bookings',
-  imports: [],
-  templateUrl: './my-bookings.html',
-  styleUrl: './my-bookings.css',
-})
-export class MyBookings {
-
-}
-*/
 
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
