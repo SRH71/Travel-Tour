@@ -1,33 +1,3 @@
-/*
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-
-@Injectable({
-  providedIn: 'root',
-})
-export class Contact {
-
-   private http = inject(HttpClient);
-
-  private apiUrl = 'http://localhost:8080/api/contact';
-
-  getContacts(): Observable<Contact[]> {
-    return this.http.get<Contact[]>(this.apiUrl);
-  }
-
-  getContactById(id: number): Observable<Contact> {
-    return this.http.get<Contact>(`${this.apiUrl}/${id}`);
-  }
-
-  deleteContact(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
-  }
-  
-}
-
-*/
-
 
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
