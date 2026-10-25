@@ -12,7 +12,8 @@ export class Contact {
 
   private http = inject(HttpClient);
 
-  private apiUrl = 'http://localhost:8080/api/contact';
+  
+  private apiUrl = 'https://travel-tour-api-gateway.onrender.com/api/contact';
 
   getContacts(): Observable<ContactModel[]> {
     return this.http.get<ContactModel[]>(this.apiUrl);
