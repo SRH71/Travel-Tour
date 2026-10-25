@@ -12,7 +12,8 @@ export class Tour {
 
   private http = inject(HttpClient);
 
-  private apiUrl = 'http://localhost:8080/api/tours';
+ 
+  private apiUrl = 'https://travel-tour-api-gateway.onrender.com/api/tours';
 
   getAllTours(): Observable<TourPackage[]> {
     return this.http.get<TourPackage[]>(this.apiUrl);
