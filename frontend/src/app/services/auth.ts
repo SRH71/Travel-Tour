@@ -11,7 +11,8 @@ export class Auth {
    private http = inject(HttpClient);
 
   //private apiUrl = 'http://localhost:8080/api/auth';
-   private apiUrl = 'https://travel-api-gateway.onrender.com';
+
+  private apiUrl = 'https://travel-api-gateway.onrender.com/api/auth';
 
   login(request: LoginRequest): Observable<AuthResponse> {
     return this.http
