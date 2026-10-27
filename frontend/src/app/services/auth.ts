@@ -10,7 +10,8 @@ export class Auth {
 
    private http = inject(HttpClient);
 
-  private apiUrl = 'http://localhost:8080/api/auth';
+  //private apiUrl = 'http://localhost:8080/api/auth';
+   private apiUrl = 'https://YOUR-API-GATEWAY.onrender.com/api/auth';
 
   login(request: LoginRequest): Observable<AuthResponse> {
     return this.http
