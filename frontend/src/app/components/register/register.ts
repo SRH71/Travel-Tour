@@ -17,7 +17,8 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class Register {
 
-  private apiUrl = 'http://localhost:8080/api/auth/register';
+ // private apiUrl = 'http://localhost:8080/api/auth/register';
+  private apiUrl = 'https://travel-api-gateway.onrender.com/api/auth/register';
 
   user = {
     username: '',
