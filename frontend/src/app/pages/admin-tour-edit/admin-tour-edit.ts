@@ -97,8 +97,10 @@ export class AdminTourEdit implements OnInit {
            */
           if (tour.imageName) {
 
-            this.imagePreview =
-              `http://localhost:8080/api/tours/images/${tour.imageName}`;
+           
+             // `http://localhost:8080/api/tours/images/${tour.imageName}`; this is original
+
+             this.imagePreview ='https://travel-api-gateway.onrender.com/api/tours/images/' + imageName
           }
         },
 
