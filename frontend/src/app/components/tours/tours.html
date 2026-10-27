@@ -31,30 +31,14 @@
       <div class="card h-100 shadow-sm tour-card">
 
         <!-- Image -->
-        <!--
+        
+        
+
         <img
           *ngIf="tour.imageName"
-          [src]="'http://localhost:8082/images/' + tour.imageName"
-          [alt]="tour.name"
-          class="card-img-top tour-image"
-        >
+          [src]="'https://travel-api-gateway.onrender.com/api/tours/images/' + tour.imageName"
+          [alt]="tour.name">
 
-        <div
-          *ngIf="!tour.imageName"
-          class="tour-image-placeholder d-flex align-items-center justify-content-center"
-        >
-          <span>No Image</span>
-        </div>
-      -->
-
-        <!-- Image 
-        <img *ngIf="tour.imageName" [src]="'http://localhost:8080/api/tours/images/' + tour.imageName" [alt]="tour.name"
-          class="card-img-top tour-image">
-
-          -->
-
-        <img *ngIf="tour.imageName" [src]="''https://travel-api-gateway.onrender.com/api/tours/images/' + imageName" [alt]="tour.name"
-          class="card-img-top tour-image">
 
       
 
