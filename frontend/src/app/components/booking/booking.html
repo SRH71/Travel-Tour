@@ -33,7 +33,7 @@
         <div class="card shadow-sm">
 
             <img *ngIf="tour.imageName"
-                [src]="'http://localhost:8080/api/tours/images/' + tour.imageName"
+                [src]="'https://travel-api-gateway.onrender.com/api/tours/images/' + imageName"
                 [alt]="tour.name"
                 class="card-img-top">
 
