@@ -32,10 +32,13 @@
 
         <div class="card shadow-sm">
 
-            <img *ngIf="tour.imageName"
-                [src]="'https://travel-api-gateway.onrender.com/api/tours/images/' + imageName"
-                [alt]="tour.name"
-                class="card-img-top">
+            
+          <img
+            *ngIf="tour.imageName"
+            [src]="'https://travel-api-gateway.onrender.com/api/tours/images/' + tour.imageName"
+            [alt]="tour.name"
+            class="card-img-top">
+
 
             <div class="card-body">
 
