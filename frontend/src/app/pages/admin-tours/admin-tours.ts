@@ -75,7 +75,8 @@ export class AdminTours implements OnInit {
       return 'assets/images/no-image.jpg';
     }
 
-    return `http://localhost:8080/api/tours/images/${imageName}`;
+    return `'https://travel-api-gateway.onrender.com/api/tours/images/' + imageName`;
+    
   }
 
   deleteTour(id: number | undefined): void {
