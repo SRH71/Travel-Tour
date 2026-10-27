@@ -68,16 +68,15 @@ export class AdminTours implements OnInit {
     });
   }
 
-  getImageUrl(imageName: string | undefined): string {
-
-    if (!imageName) {
-
-      return 'assets/images/no-image.jpg';
-    }
-
-    return `'https://travel-api-gateway.onrender.com/api/tours/images/' + imageName`;
-    
+  
+getImageUrl(imageName: string | undefined): string {
+  if (!imageName) {
+    return 'assets/images/no-image.jpg';
   }
+
+  return 'https://travel-api-gateway.onrender.com/api/tours/images/' + imageName;
+}
+
 
   deleteTour(id: number | undefined): void {
 
