@@ -12,7 +12,8 @@ export class Booking {
 
 private http = inject(HttpClient);
 
-private apiUrl = 'http://localhost:8080/api/bookings';
+// private apiUrl = 'http://localhost:8080/api/bookings';
+private apiUrl = 'https://travel-api-gateway.onrender.com/api/bookings';  
 
 // Get all bookings
 getAllBookings(): Observable<BookingModel[]> {
