@@ -27,8 +27,13 @@
             <img *ngIf="tour.imageName" [src]="'http://localhost:8082/images/' + tour.imageName" [alt]="tour.name"
                 class="img-fluid rounded shadow tour-detail-image"> -->
 
-            <img *ngIf="tour.imageName" [src]="'https://travel-api-gateway.onrender.com/api/tours/images/' + imageName"
-                [alt]="tour.name" class="img-fluid rounded shadow tour-detail-image">
+          
+            <img
+              *ngIf="tour.imageName"
+              [src]="'https://travel-api-gateway.onrender.com/api/tours/images/' + tour.imageName"
+              [alt]="tour.name"
+              class="img-fluid rounded shadow tour-detail-image">
+
 
             <div *ngIf="!tour.imageName" class="tour-image-placeholder rounded shadow
                d-flex align-items-center justify-content-center">
